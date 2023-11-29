@@ -3,26 +3,28 @@ include __DIR__. '/partials/Header.php';
 
 if (isset($_GET['parking'])) {
     $parking = $_GET['parking'];
-    if ($parking !== 'all') {
-        $temporary_array = [];
-        foreach($hotels as $hotel_detail){
-            if($hotel_detail['parking'] == (bool) $parking) {
-                $temporary_array[] = $hotel_detail;
-            }
-        }
-        $hotels = $temporary_array;
-    }
+    // if ($parking !== 'all') {
+    //     $temporary_array = [];
+    //     foreach($hotels as $hotel_detail){
+    //         if($hotel_detail['parking'] == (bool) $parking) {
+    //             $temporary_array[] = $hotel_detail;
+    //         }
+    //     }
+    //     $hotels = $temporary_array;
+    // }
+    $hotels = array_filter($hotels, fn($item) => $item['parking'] == $parking || $parking == 'all');
 }
 
 if (isset($_GET['vote']) && $_GET['vote'] !== 'all') {
     $vote = intval($_GET['vote']);
-    $temporary_array = [];
-    foreach($hotels as $hotel_detail){
-        if($hotel_detail['vote'] >= $vote) {
-            $temporary_array[] = $hotel_detail;
-        }
-    }
-    $hotels = $temporary_array;
+    // $temporary_array = [];
+    // foreach($hotels as $hotel_detail){
+    //     if($hotel_detail['vote'] >= $vote) {
+    //         $temporary_array[] = $hotel_detail;
+    //     }
+    // }
+    // $hotels = $temporary_array;
+    $hotels = array_filter($hotels, fn($item) => $item['vote'] == $vote);
 }
 
 ?>
