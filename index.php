@@ -4,6 +4,7 @@ include __DIR__. '/partials/Header.php';
 if (isset($_GET['parking'])) {
     $parking = $_GET['parking'];
     if ($parking !== 'all') {
+        $temporary_array = [];
         foreach($hotels as $hotel_detail){
             if($hotel_detail['parking'] == (bool) $parking) {
                 $temporary_array[] = $hotel_detail;
@@ -15,6 +16,7 @@ if (isset($_GET['parking'])) {
 
 if (isset($_GET['vote']) && $_GET['vote'] !== 'all') {
     $vote = intval($_GET['vote']);
+    $temporary_array = [];
     foreach($hotels as $hotel_detail){
         if($hotel_detail['vote'] >= $vote) {
             $temporary_array[] = $hotel_detail;
