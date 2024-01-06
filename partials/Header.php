@@ -1,4 +1,12 @@
 <?php 
+// e se volessi creare una pagina che necessita di un login?
+// come fa php a gestire gli utenti loggati da quelli non loggati?
+// inserendo session_start() apro una sessione in cui php metterà in memoria
+// la sessione dei nostri utenti
+// va sempre messo in cima al php della prima pagina in cui voglio aprire una sessione
+session_start();
+
+// includo l'array associativo da data.php
 include __DIR__. '/../model/data.php';
 ?>
 
@@ -14,6 +22,8 @@ include __DIR__. '/../model/data.php';
 <body>
     <header class="container my-3">
         <div class="py-3 px-4">
+            <!-- creo un form che mi permetta di filtrare i risultati dell'array in data.php -->
+            <!-- i check che regolano il form li determinerò nella pagina di index.php -->
             <form action="index.php" method="GET">
                 <span>
                     parcheggio
@@ -34,5 +44,7 @@ include __DIR__. '/../model/data.php';
                 </select>
                 <button type="submit" class="btn btn-success">Cerca</button>
             </form>
+            <!-- inserisco un bottone che mi permetta di fare logout -->
+            <button><a href="logout.php">logout</a></button>
         </div>
     </header>
